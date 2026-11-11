@@ -1,0 +1,674 @@
+<title>Jan's Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one left-aligned column. A localhost address chip opens the page, projects read like a directory listing. */
+:root {
+  --bg: #f2f5f3;
+  --fg: #13201b;
+  --muted: #53655d;
+  --line: #c9d4ce;
+  --surface: #e6ede9;
+  --accent: #0c6a4d;
+  --accent-fg: #ffffff;
+  --mark: #f3c94a;
+  --mark-fg: #3a2f00;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1512;
+    --fg: #e5eee9;
+    --muted: #9bb0a5;
+    --line: #25362f;
+    --surface: #101c18;
+    --accent: #5fd6a6;
+    --accent-fg: #06231a;
+    --mark: #5c4a0a;
+    --mark-fg: #ffe9a3;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1512;
+  --fg: #e5eee9;
+  --muted: #9bb0a5;
+  --line: #25362f;
+  --surface: #101c18;
+  --accent: #5fd6a6;
+  --accent-fg: #06231a;
+  --mark: #5c4a0a;
+  --mark-fg: #ffe9a3;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding-block: 0 2.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 64rem; margin-inline: auto; }
+
+/* Placeholder marker: anything highlighted is meant to be replaced */
+.ph {
+  background: var(--mark);
+  color: var(--mark-fg);
+  padding: 0.05em 0.4em;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Header */
+.bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.bar nav ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; list-style: none; margin: 0; padding: 0; }
+.bar nav a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.bar nav a:hover { color: var(--accent); }
+.toggle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+.toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hero */
+.hero { padding-block: clamp(2.5rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4.5rem); }
+.addr {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 100%;
+  margin: 0 0 1.75rem;
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.dot {
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.3; } }
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 88%;
+  font-size: clamp(2.75rem, 9vw + 0.5rem, 7rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+h1 .name { color: var(--accent); }
+.lede { max-width: 38rem; margin: 1.75rem 0 0; font-size: 1.2rem; }
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin: 1.5rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Sections */
+section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
+.sec { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+.sec > * { min-width: 0; }
+@media (min-width: 760px) { .sec { grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; } }
+.label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.about p {
+  max-width: 38rem;
+  margin: 0 0 1rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.45;
+}
+
+/* Projects */
+.projects { list-style: none; margin: 0; padding: 0; }
+.project { padding-block: 2rem; border-top: 1px solid var(--line); }
+.project:first-child, .project.first { padding-top: 0; border-top: 0; }
+.project:last-child, .project.last { padding-bottom: 0; }
+
+/* Filter chips */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+button.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.chip.static { border-style: dashed; color: var(--muted); cursor: default; }
+.count { margin: 0 0 1.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; }
+.hint { margin: 1.75rem 0 0; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+
+/* Terminal */
+.term {
+  max-width: 40rem;
+  margin-top: 2.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.term-head { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
+.term-out { max-height: 13rem; overflow-y: auto; padding: 0.75rem 0.9rem 0.25rem; }
+.ln { margin: 0 0 0.35rem; overflow-wrap: anywhere; line-height: 1.5; }
+.ln.cmd { color: var(--accent); }
+.term-form { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.9rem 0.7rem; }
+.term-form label { color: var(--accent); }
+.term-form input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--fg);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0.25rem 0;
+}
+.term-form input:focus { outline: none; border-bottom-color: var(--accent); }
+.term-btns { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 0.9rem 0.9rem; }
+.term-btns .chip { font-size: 0.74rem; padding: 0.25rem 0.65rem; }
+.bar nav a[aria-current] { color: var(--accent); text-decoration: underline; text-underline-offset: 0.4em; }
+.links a { color: var(--accent); }
+
+/* Certificates */
+.certs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.certs li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
+.certs li:last-child { padding-bottom: 0; border-bottom: 0; }
+.certs strong { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; }
+.certs span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.meta {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.project h3 {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 92%;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.project p { max-width: 40rem; margin: 0 0 0.8rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+.tags li {
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.75rem 2.5rem; margin: 0; }
+.skills dt {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.skills dd { margin: 0; font-size: 1.05rem; }
+
+/* Contact */
+.contact .big {
+  max-width: 30rem;
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 92%;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 0 0 1.25rem; }
+.mail code { font-family: var(--font-mono); font-size: 0.95rem; overflow-wrap: anywhere; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-fg);
+  background: var(--accent);
+  border: 0;
+  border-radius: 4px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.links { display: grid; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.links li { display: flex; flex-wrap: wrap; gap: 0.2rem 0.9rem; }
+.links span:first-child {
+  min-width: 5.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot { animation: none; }
+}
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="#top">Jan</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="toggle" id="theme" type="button" aria-label="Switch color theme"><span>Dark</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero" style="border-top:0">
+      <p class="addr"><span class="dot" aria-hidden="true"></span>http://localhost/jan</p>
+      <h1>Hi, I'm <span class="name">Jan</span>. I build websites.</h1>
+      <p class="lede">I'm a student web developer working in HTML, CSS, JavaScript and PHP. I like projects where the design and the small details both get attention.</p>
+      <p class="facts">
+        <span>Dr. Yanga's Colleges Inc.</span>
+        <span>BS Information Technology, 2nd year</span>
+        <span>Bocaue, Bulacan</span>
+      </p>
+      <div class="term" id="term">
+        <div class="term-head">jan@localhost: ~</div>
+        <div class="term-out" id="out" role="log" aria-live="polite">
+          <p class="ln cmd">$ whoami</p>
+          <p class="ln">Jan · BS Information Technology, 2nd year · Dr. Yanga's Colleges Inc.</p>
+          <p class="ln">Type help, or tap a command below.</p>
+        </div>
+        <form class="term-form" id="termform" autocomplete="off">
+          <label for="cmd">$</label>
+          <input id="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" aria-label="Type a command">
+        </form>
+        <div class="term-btns" id="termbtns">
+          <button class="chip" type="button" data-cmd="help">help</button>
+          <button class="chip" type="button" data-cmd="projects">projects</button>
+          <button class="chip" type="button" data-cmd="skills">skills</button>
+          <button class="chip" type="button" data-cmd="contact">contact</button>
+          <button class="chip" type="button" data-cmd="theme">theme</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="sec about">
+        <h2 class="label">About</h2>
+        <div>
+          <p>I'm learning to build the whole website: the pages people see and the admin side that keeps them running.</p>
+          <p>Recently that meant a cafe and billiards site with login and record management, an interactive birthday site with a 3D photo gallery, and a network setup in Cisco Packet Tracer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec">
+        <h2 class="label">Projects</h2>
+        <div>
+        <div class="filters" id="filters" role="group" aria-label="Filter projects by technology">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="php" aria-pressed="false">PHP</button>
+          <button class="chip" type="button" data-filter="javascript" aria-pressed="false">JavaScript</button>
+          <button class="chip" type="button" data-filter="htmlcss" aria-pressed="false">HTML &amp; CSS</button>
+          <button class="chip" type="button" data-filter="networking" aria-pressed="false">Networking</button>
+        </div>
+        <p class="count" id="count" aria-live="polite">Showing all 4 projects</p>
+        <ul class="projects">
+          <li class="project" data-tech="php javascript htmlcss">
+            <p class="meta">2026 · Group project, built by me · misskonaposyasir.page.gd</p>
+            <h3>ASA Philippines Foundation website</h3>
+            <p>A website for ASA Philippines Foundation Inc., a non-profit that gives microfinance and micro loans to women entrepreneurs in underserved communities and runs community programs in nutrition, health, education and the environment. It was a group project, and I built the site myself.</p>
+            <ul class="tags"><li>PHP</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <p style="margin-top:1rem"><a href="https://misskonaposyasir.page.gd/" target="_blank" rel="noopener" style="color:var(--accent)">Visit the live site</a></p>
+          </li>
+          <li class="project" data-tech="php htmlcss">
+            <p class="meta">2026 · Group project · projects/yiouyi-cafe</p>
+            <h3>YiouYi Cafe &amp; Billiards website</h3>
+            <p>A business website with a CRUD system, modeled on a cafe and billiards hall in Sta. Maria, Bulacan. It has a combined home and about page, a menu, a billiards section, one login and signup form that also serves admins, and a dashboard for managing records.</p>
+            <ul class="tags"><li>HTML</li><li>CSS</li><li>PHP</li><li>CRUD</li><li>Admin dashboard</li></ul>
+            <p style="margin-top:1rem"><a href="https://yiouyi.kesug.com/?i=1" target="_blank" rel="noopener" style="color:var(--accent)">Visit the live site</a></p>
+          </li>
+          <li class="project" data-tech="javascript htmlcss">
+            <p class="meta">2026 · Personal project · projects/birthday-site</p>
+            <h3>Interactive birthday website</h3>
+            <p>A multi-page gift site in a green, elegant style. A 3D cylinder of photos rotates on its own, a cake has candles you light yourself, a wish page sits under a field of stars, and a music page plays "Easily" by Bruno Major.</p>
+            <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>3D transforms</li></ul>
+          </li>
+          <li class="project" data-tech="networking">
+            <p class="meta">2026 · Coursework · projects/packet-tracer-lab</p>
+            <h3>Campus network in Cisco Packet Tracer</h3>
+            <p>A network built from scratch: IP addressing, static routes between networks, DNS and TFTP servers, IoT devices, a wireless router, basic switch configuration and SSH access to a switch.</p>
+            <ul class="tags"><li>Cisco Packet Tracer</li><li>IP addressing</li><li>Static routing</li><li>SSH</li></ul>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec">
+        <h2 class="label">Skills</h2>
+        <div>
+        <dl class="skills">
+          <div><dt>Programming languages</dt><dd class="chips">
+            <button class="chip" type="button" data-skill="htmlcss">HTML</button>
+            <button class="chip" type="button" data-skill="htmlcss">CSS</button>
+            <button class="chip" type="button" data-skill="javascript">JavaScript</button>
+            <button class="chip" type="button" data-skill="php">PHP</button>
+            <span class="chip static">Java</span>
+            <span class="chip static">Python</span>
+            <span class="chip static">Solidity</span>
+          </dd></div>
+          <div><dt>Back end</dt><dd class="chips">
+            <button class="chip" type="button" data-skill="php">CRUD systems</button>
+            <button class="chip" type="button" data-skill="php">Login and admin forms</button>
+            <span class="chip static">MySQL</span>
+          </dd></div>
+          <div><dt>Frameworks</dt><dd class="chips">
+            <span class="chip static">React.js</span>
+            <span class="chip static">Node.js</span>
+            <span class="chip static">Tailwind CSS</span>
+          </dd></div>
+          <div><dt>Tools</dt><dd class="chips">
+            <span class="chip static">VS Code</span>
+            <span class="chip static">WAMP local server</span>
+            <span class="chip static">ChatGPT</span>
+            <span class="chip static">Claude</span>
+            <span class="chip static">GitHub</span>
+            <span class="chip static">Vercel</span>
+          </dd></div>
+          <div><dt>Networking</dt><dd class="chips">
+            <button class="chip" type="button" data-skill="networking">Cisco Packet Tracer</button>
+            <button class="chip" type="button" data-skill="networking">IP addressing</button>
+            <button class="chip" type="button" data-skill="networking">Static routing</button>
+            <button class="chip" type="button" data-skill="networking">DNS and TFTP servers</button>
+            <button class="chip" type="button" data-skill="networking">SSH</button>
+          </dd></div>
+        </dl>
+        <p class="hint">Solid chips open the projects that use them. Dashed chips have no linked project yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <div class="sec">
+        <h2 class="label">Certificates</h2>
+        <ul class="certs">
+          <li><strong>Java</strong><span>Certificate</span></li>
+          <li><strong>MySQL</strong><span>Certificate</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sec contact">
+        <h2 class="label">Contact</h2>
+        <div>
+          <p class="big">Message me about projects, internships or group work.</p>
+          <p class="mail">
+            <code id="email">janromelc84@gmail.com</code>
+            <button class="btn" id="copy" type="button">Copy</button>
+          </p>
+          <ul class="links">
+            <li><span>GitHub</span><a href="https://github.com/jan-dev-ctrl" target="_blank" rel="noopener">github.com/jan-dev-ctrl</a></li>
+            <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/jan-romel-cacho-9a2016390/" target="_blank" rel="noopener">linkedin.com/in/jan-romel-cacho</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Jan · 2026</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme");
+  function current() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function sync() {
+    toggle.querySelector("span").textContent = current() === "dark" ? "Light" : "Dark";
+  }
+  try {
+    var saved = localStorage.getItem("jan-theme");
+    if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+  } catch (e) {}
+  toggle.addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("jan-theme", next); } catch (e) {}
+    sync();
+  });
+  sync();
+
+  var copy = document.getElementById("copy");
+  var email = document.getElementById("email");
+  function flash(msg) {
+    copy.textContent = msg;
+    setTimeout(function () { copy.textContent = "Copy"; }, 1600);
+  }
+  function selectText() {
+    var r = document.createRange();
+    r.selectNodeContents(email);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+    flash("Selected");
+  }
+  copy.addEventListener("click", function () {
+    var text = email.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash("Copied"); }, selectText);
+    } else {
+      selectText();
+    }
+  });
+})();
+</script>
+<script>
+(function () {
+  /* Project filter, shared by the filter bar and the skill chips */
+  var items = [].slice.call(document.querySelectorAll(".project"));
+  var filterChips = [].slice.call(document.querySelectorAll("#filters .chip"));
+  var count = document.getElementById("count");
+  function applyFilter(key) {
+    var shown = 0, first = null, last = null;
+    items.forEach(function (li) {
+      li.classList.remove("first", "last");
+      var tech = (li.getAttribute("data-tech") || "").split(" ");
+      var ok = key === "all" || tech.indexOf(key) > -1;
+      li.hidden = !ok;
+      if (ok) { shown++; if (!first) first = li; last = li; }
+    });
+    if (first) first.classList.add("first");
+    if (last) last.classList.add("last");
+    filterChips.forEach(function (c) {
+      c.setAttribute("aria-pressed", c.getAttribute("data-filter") === key ? "true" : "false");
+    });
+    count.textContent = key === "all"
+      ? "Showing all " + items.length + " projects"
+      : "Showing " + shown + " of " + items.length + " projects";
+  }
+  filterChips.forEach(function (c) {
+    c.addEventListener("click", function () { applyFilter(c.getAttribute("data-filter")); });
+  });
+  function goProjects() { document.getElementById("projects").scrollIntoView(); }
+  [].slice.call(document.querySelectorAll("[data-skill]")).forEach(function (c) {
+    c.addEventListener("click", function () { applyFilter(c.getAttribute("data-skill")); goProjects(); });
+  });
+  applyFilter("all");
+
+  /* Highlight the nav link for the section in view */
+  var links = [].slice.call(document.querySelectorAll(".bar nav a"));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+  function spy() {
+    var cur = -1;
+    secs.forEach(function (s, i) {
+      if (s && s.getBoundingClientRect().top <= 140) cur = i;
+    });
+    links.forEach(function (a, i) {
+      if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+
+  /* Terminal */
+  var out = document.getElementById("out");
+  var input = document.getElementById("cmd");
+  function say(text, cls) {
+    var p = document.createElement("p");
+    p.className = "ln" + (cls ? " " + cls : "");
+    p.textContent = text;
+    out.appendChild(p);
+    while (out.children.length > 60) out.removeChild(out.firstChild);
+    out.scrollTop = out.scrollHeight;
+  }
+  var commands = {
+    help: function () { say("Commands: help, whoami, projects, skills, contact, theme, clear"); },
+    whoami: function () { say("Jan · BS Information Technology, 2nd year · Dr. Yanga's Colleges Inc. · Bocaue, Bulacan"); },
+    projects: function () {
+      say("1. ASA Philippines Foundation website");
+      say("2. YiouYi Cafe & Billiards website");
+      say("3. Interactive birthday website");
+      say("4. Campus network in Cisco Packet Tracer");
+      applyFilter("all");
+      goProjects();
+    },
+    skills: function () {
+      say("Languages: HTML, CSS, JavaScript, PHP, Java, Python, Solidity");
+      say("Frameworks: React.js, Node.js, Tailwind CSS");
+      say("Back end: CRUD, login and admin forms");
+      say("Tools: VS Code, WAMP, ChatGPT, Claude, GitHub, Vercel");
+      say("Networking: Cisco Packet Tracer, static routing, SSH");
+    },
+    contact: function () {
+      say("Email: janromelc84@gmail.com");
+      say("GitHub: github.com/jan-dev-ctrl");
+      say("LinkedIn: linkedin.com/in/jan-romel-cacho-9a2016390");
+    },
+    theme: function () {
+      document.getElementById("theme").click();
+      say("Theme switched.");
+    },
+    clear: function () { out.textContent = ""; }
+  };
+  function run(raw) {
+    var name = raw.trim().toLowerCase();
+    if (!name) return;
+    say("$ " + raw.trim(), "cmd");
+    if (Object.prototype.hasOwnProperty.call(commands, name)) commands[name]();
+    else say("command not found: " + name + ". Type help.");
+  }
+  document.getElementById("termform").addEventListener("submit", function (e) {
+    e.preventDefault();
+    run(input.value);
+    input.value = "";
+  });
+  [].slice.call(document.querySelectorAll("[data-cmd]")).forEach(function (b) {
+    b.addEventListener("click", function () { run(b.getAttribute("data-cmd")); });
+  });
+})();
+</script>
