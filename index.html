@@ -166,6 +166,33 @@ h1 .name { color: var(--accent); }
   font-size: 0.82rem;
   color: var(--muted);
 }
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.7rem;
+}
+.a-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.a-btn:hover { transform: translateY(-1px); }
+.a-btn.primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+.a-btn.secondary {
+  border: 1px solid var(--line);
+  color: var(--fg);
+  background: transparent;
+}
 
 /* Sections */
 section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
@@ -362,12 +389,16 @@ footer {
     <section class="hero" style="border-top:0">
       <p class="addr"><span class="dot" aria-hidden="true"></span>http://localhost/jan</p>
       <h1>Hi, I'm <span class="name">Jan Romel Cacho</span>. I am a Software Developer.</h1>
-      <p class="lede">I'm a student web developer working in HTML, CSS, JavaScript and PHP. I like projects where the design and the small details both get attention.</p>
+      <p class="lede">I build responsive, user-friendly websites that combine clean design with practical functionality. I’m a student developer focused on HTML, CSS, JavaScript, and PHP, with experience creating business websites, admin systems, and interactive front-end experiences.</p>
       <p class="facts">
         <span>Dr. Yanga's Colleges Inc.</span>
         <span>BS Information Technology, 2nd year</span>
         <span>Bocaue, Bulacan</span>
       </p>
+      <div class="hero-cta">
+        <a class="a-btn primary" href="#projects">View my projects</a>
+        <a class="a-btn secondary" href="mailto:janromelc84@gmail.com?subject=Project%20Inquiry">Hire me</a>
+      </div>
       <div class="term" id="term">
         <div class="term-head">jan@localhost: ~</div>
         <div class="term-out" id="out" role="log" aria-live="polite">
@@ -393,8 +424,8 @@ footer {
       <div class="sec about">
         <h2 class="label">About</h2>
         <div>
-          <p>I'm learning to build the whole website: the pages people see and the admin side that keeps them running.</p>
-          <p>Recently that meant a cafe and billiards site with login and record management, an interactive birthday site with a 3D photo gallery, and a network setup in Cisco Packet Tracer.</p>
+          <p>I’m a web developer who enjoys building websites that look polished and work smoothly for real users. I care about both the visual design and the practical side of development, especially responsive layouts, clean structure, and simple user experiences.</p>
+          <p>Recently that meant a cafe and billiards site with login and record management, an interactive birthday site with a 3D photo gallery, and a network setup in Cisco Packet Tracer. I enjoy turning ideas into functional digital experiences and learning through each project I build.</p>
         </div>
       </div>
     </section>
