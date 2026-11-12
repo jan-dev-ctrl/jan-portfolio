@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Jan Romel Cacho's Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
-/* Layout: one left-aligned column. A localhost address chip opens the page, projects read like a directory listing. */
 :root {
   --bg: #f2f5f3;
   --fg: #13201b;
@@ -48,7 +47,6 @@
   --mark-fg: #ffe9a3;
   color-scheme: dark;
 }
-
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 body {
@@ -57,9 +55,7 @@ body {
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.6;
-  padding-block: 0 2.5rem;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding: 0 max(16px, env(safe-area-inset-right)) 2.5rem max(16px, env(safe-area-inset-left));
 }
 body::before {
   content: "";
@@ -73,17 +69,6 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .wrap { max-width: 64rem; margin-inline: auto; }
 
-/* Placeholder marker: anything highlighted is meant to be replaced */
-.ph {
-  background: var(--mark);
-  color: var(--mark-fg);
-  padding: 0.05em 0.4em;
-  border-radius: 3px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-/* Header */
 .bar {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
@@ -104,7 +89,14 @@ a { color: inherit; }
   letter-spacing: -0.02em;
   text-decoration: none;
 }
-.bar nav ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; list-style: none; margin: 0; padding: 0; }
+.bar nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .bar nav a {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -126,7 +118,6 @@ a { color: inherit; }
 }
 .toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Hero */
 .hero { padding-block: clamp(2.5rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4.5rem); }
 .addr {
   display: inline-flex;
@@ -199,7 +190,6 @@ h1 .name { color: var(--accent); }
   background: transparent;
 }
 
-/* Sections */
 section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
 .sec { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
 .sec > * { min-width: 0; }
@@ -220,13 +210,11 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(-
   line-height: 1.45;
 }
 
-/* Projects */
 .projects { list-style: none; margin: 0; padding: 0; }
 .project { padding-block: 2rem; border-top: 1px solid var(--line); }
 .project:first-child, .project.first { padding-top: 0; border-top: 0; }
 .project:last-child, .project.last { padding-bottom: 0; }
 
-/* Filter chips */
 .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
 .chip {
   font-family: var(--font-mono);
@@ -245,7 +233,6 @@ button.chip:hover { border-color: var(--accent); color: var(--accent); }
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; }
 .hint { margin: 1.75rem 0 0; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
 
-/* Terminal */
 .term {
   max-width: 40rem;
   margin-top: 2.25rem;
@@ -266,7 +253,6 @@ button.chip:hover { border-color: var(--accent); color: var(--accent); }
   flex: 1;
   min-width: 0;
   font: inherit;
-  font-size: 1rem;
   color: var(--fg);
   background: transparent;
   border: 0;
@@ -279,7 +265,6 @@ button.chip:hover { border-color: var(--accent); color: var(--accent); }
 .bar nav a[aria-current] { color: var(--accent); text-decoration: underline; text-underline-offset: 0.4em; }
 .links a { color: var(--accent); }
 
-/* Certificates */
 .certs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
 .certs li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
 .certs li:last-child { padding-bottom: 0; border-bottom: 0; }
@@ -313,7 +298,6 @@ button.chip:hover { border-color: var(--accent); color: var(--accent); }
   border-radius: 4px;
 }
 
-/* Skills */
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.75rem 2.5rem; margin: 0; }
 .skills dt {
   margin: 0 0 0.4rem;
@@ -325,7 +309,6 @@ button.chip:hover { border-color: var(--accent); color: var(--accent); }
 }
 .skills dd { margin: 0; font-size: 1.05rem; }
 
-/* Contact */
 .contact .big {
   max-width: 30rem;
   margin: 0 0 1.5rem;
@@ -606,7 +589,6 @@ footer {
 </script>
 <script>
 (function () {
-  /* Project filter, shared by the filter bar and the skill chips */
   var items = [].slice.call(document.querySelectorAll(".project"));
   var filterChips = [].slice.call(document.querySelectorAll("#filters .chip"));
   var count = document.getElementById("count");
@@ -637,7 +619,6 @@ footer {
   });
   applyFilter("all");
 
-  /* Highlight the nav link for the section in view */
   var links = [].slice.call(document.querySelectorAll(".bar nav a"));
   var secs = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
   function spy() {
@@ -652,7 +633,6 @@ footer {
   window.addEventListener("scroll", spy, { passive: true });
   spy();
 
-  /* Terminal */
   var out = document.getElementById("out");
   var input = document.getElementById("cmd");
   function say(text, cls) {
