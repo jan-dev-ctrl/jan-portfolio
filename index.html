@@ -69,19 +69,7 @@
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
   .wrap { max-width: 64rem; margin-inline: auto; }
-  .bar {
-    position: sticky;
-    top: env(safe-area-inset-top, 0px);
-    z-index: 5;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.5rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid var(--line);
-  }
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem 1.5rem; padding-block: 0.9rem; border-bottom: 1px solid var(--line); }
   .brand { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; text-decoration: none; }
   .bar nav ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; list-style: none; margin: 0; padding: 0; }
   .bar nav a { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
@@ -191,8 +179,8 @@
     </div></div></section>
     <section id="skills"><div class="sec"><h2 class="label">Skills</h2><div><dl class="skills">
       <div><dt>Programming languages</dt><dd class="chips"><button class="chip" type="button" data-skill="htmlcss">HTML</button><button class="chip" type="button" data-skill="htmlcss">CSS</button><button class="chip" type="button" data-skill="javascript">JavaScript</button><button class="chip" type="button" data-skill="php">PHP</button><span class="chip static">Java</span><span class="chip static">Python</span><span class="chip static">Solidity</span></dd></div>
-      <div><dt>Back end</dt><dd class="chips"><button class="chip" type="button" data-skill="php">CRUD systems</button><button class="chip" type="button" data-skill="php">Login and admin forms</button><span class="chip static">MySQL</span></dd></div>
-      <div><dt>Frameworks</dt><dd class="chips"><span class="chip static">Flask</span><span class="chip static">Bootstrap</span><span class="chip static">Django</span><span class="chip static">Tailwind CSS</span></dd></div>
+      <div><dt>Back end</dt><dd class="chips"><button class="chip" type="button" data-skill="php">CRUD systems</button><button class="chip" type="button" data-skill="php">Login and admin forms</button><span class="chip static">MySQL</span><span class="chip static">PHP</span><span class="chip static">Flask</span><span class="chip static">Django</span></dd></div>
+      <div><dt>Frameworks</dt><dd class="chips"><span class="chip static">Bootstrap</span><span class="chip static">Tailwind CSS</span></dd></div>
       <div><dt>Tools</dt><dd class="chips"><span class="chip static">VS Code</span><span class="chip static">WAMP local server</span><span class="chip static">ChatGPT</span><span class="chip static">Claude</span><span class="chip static">GitHub</span><span class="chip static">Vercel</span></dd></div>
       <div><dt>Networking</dt><dd class="chips"><button class="chip" type="button" data-skill="networking">Cisco Packet Tracer</button><button class="chip" type="button" data-skill="networking">IP addressing</button><button class="chip" type="button" data-skill="networking">Static routing</button><button class="chip" type="button" data-skill="networking">DNS and TFTP servers</button><button class="chip" type="button" data-skill="networking">SSH</button></dd></div>
     </dl><p class="hint">Solid chips open the projects that use them. Dashed chips have no linked project yet.</p></div></div></section>
@@ -246,8 +234,8 @@
     projects: function () { say("1. ASA Philippines Foundation website"); say("2. YiouYi Cafe & Billiards website"); say("3. Interactive birthday website"); say("4. Campus network in Cisco Packet Tracer"); applyFilter("all"); goProjects(); },
     skills: function () {
       say("Languages: HTML, CSS, JavaScript, PHP, Java, Python, Solidity");
-      say("Frameworks: Flask, Bootstrap, Django, Tailwind CSS");
-      say("Back end: CRUD, login and admin forms");
+      say("Back end: CRUD systems, login and admin forms, MySQL, PHP, Flask, Django");
+      say("Frameworks: Bootstrap, Tailwind CSS");
       say("Tools: VS Code, WAMP, ChatGPT, Claude, GitHub, Vercel");
       say("Networking: Cisco Packet Tracer, static routing, SSH");
     },
